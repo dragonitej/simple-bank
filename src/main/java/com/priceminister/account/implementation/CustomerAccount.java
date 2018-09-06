@@ -11,9 +11,10 @@ public class CustomerAccount implements Account {
 	}
 	
 	public void add(Double addedAmount) {
-		if(addedAmount == null || addedAmount < 0d) {
-			return; 
+		if(!isAmountValid(addedAmount)) {
+			return;
 		}
+		
 		balance += addedAmount;
 	}
 
@@ -23,9 +24,10 @@ public class CustomerAccount implements Account {
 
 	public Double withdrawAndReportBalance(Double withdrawnAmount, AccountRule rule) throws IllegalBalanceException {
 
-		if(withdrawnAmount == null || withdrawnAmount < 0) {
+		if(!isAmountValid(withdrawnAmount)) {
 			return balance;
 		}
+		
 		Double tempBalance = balance - withdrawnAmount;
 		
 		if (!rule.withdrawPermitted(tempBalance)) {
@@ -36,4 +38,12 @@ public class CustomerAccount implements Account {
 		return balance;
 	}
 
+	/**
+	 * Check if the amount is valid
+	 * @param amount
+	 * @return the amount validity
+	 */
+	private boolean isAmountValid(Double amount) {
+		return amount != null && amount >= 0;
+	}
 }

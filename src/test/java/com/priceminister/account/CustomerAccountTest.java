@@ -115,6 +115,7 @@ public class CustomerAccountTest {
 		final Double beginningBalance = customerAccount.getBalance();
 		customerAccount.add(addedAmount);
 		// TODO: check the technical spec for this case (e.g throw Exception?)
+		// by default: Do nothing
 		assertEquals(beginningBalance, customerAccount.getBalance());
 	}
 	
@@ -127,6 +128,7 @@ public class CustomerAccountTest {
 		final Double beginningBalance = customerAccount.getBalance();
 		customerAccount.add(addedAmount);
 		// TODO: check the technical spec for this case (e.g throw Exception?)
+		// by default: Do nothing
 		assertEquals(beginningBalance, customerAccount.getBalance());
 	}
 	
