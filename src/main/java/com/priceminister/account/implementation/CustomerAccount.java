@@ -11,7 +11,9 @@ public class CustomerAccount implements Account {
 	}
 	
 	public void add(Double addedAmount) {
-		// TODO: check the spec for adding a negative amount use case!
+		if(addedAmount == null || addedAmount < 0d) {
+			return; 
+		}
 		balance += addedAmount;
 	}
 
@@ -20,12 +22,16 @@ public class CustomerAccount implements Account {
 	}
 
 	public Double withdrawAndReportBalance(Double withdrawnAmount, AccountRule rule) throws IllegalBalanceException {
-		// TODO: check the spec for withdrawing a negative amount use case!
 
-		balance -= withdrawnAmount;
-		if (!rule.withdrawPermitted(balance)) {
-			throw new IllegalBalanceException(balance);
+		if(withdrawnAmount == null || withdrawnAmount < 0) {
+			return balance;
 		}
+		Double tempBalance = balance - withdrawnAmount;
+		
+		if (!rule.withdrawPermitted(tempBalance)) {
+			throw new IllegalBalanceException(tempBalance);
+		}
+		balance = tempBalance;
 
 		return balance;
 	}
